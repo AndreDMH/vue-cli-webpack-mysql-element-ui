@@ -4,21 +4,8 @@
 ```
 npm install
 ```
+# 简介
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+基于 vue+element-ui的后台系统 使用axios 封装接口 通过express连接本地数据库 模拟接口请求 webpack进行打包发布
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+模块划分 
