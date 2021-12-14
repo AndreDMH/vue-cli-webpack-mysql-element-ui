@@ -1,6 +1,8 @@
 <template>
   <div class="note">
-    
+    <div>
+      <!-- <el-button @click="clickBtn">测试</el-button> -->
+    </div>
   </div>
 </template>
 
@@ -11,11 +13,19 @@
       
       }
     },
-    created(){},
-    methods:{},
+    created(){
+      
+    },
+    methods:{
+      clickBtn(){
+      
+      },
+    },
   }
 </script>
 
 <style lang="scss" scoped>
-
+.note{
+  display: inline-block;
+}
 </style>
