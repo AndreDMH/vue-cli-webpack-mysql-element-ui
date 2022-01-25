@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["userManege"],{cfc3:function(e,n,a){"use strict";a.r(n);var t=function(){var e=this,n=e.$createElement,a=e._self._c||n;return a("div",{staticClass:"userManage"},[e._v(" userManagemain ")])},s=[],r={data:function(){return{}}},u=r,c=a("2877"),i=Object(c["a"])(u,t,s,!1,null,"106723a2",null);n["default"]=i.exports}}]);
+//# sourceMappingURL=userManege.c2f38e07.js.map
