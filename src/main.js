@@ -9,6 +9,7 @@ import Mint from "mint-ui";
 import "mint-ui/lib/style.css";
 import 'font-awesome/css/font-awesome.css'
 import store from '@/store'
+import jquery from 'jquery'
 
 
 
@@ -20,5 +21,6 @@ Vue.use(Mint)
 new Vue({
   router,
   store,
+  jquery,
   render: h => h(App)
 }).$mount('#app')

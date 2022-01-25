@@ -7,6 +7,9 @@ const store = new Vuex.Store({
   modules:{
 
   },
-  getter
+  getter,
+  state:{
+    city:'beijing'
+  }
 })
 export default store

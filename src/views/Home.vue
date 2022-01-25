@@ -1,5 +1,7 @@
 <template>
-  <div class="home" :style="{height:homeHeight}">
+  <div class="totalHome" style="height:100%">
+    <span style="display:inline-block;width:1px;height:100%;vertical-align:middle;"></span>
+    <div class="home" :style="{height:homeHeight}">
     <!-- <router-link to="/pages/test01">link跳转</router-link> -->
       <span style="display:inline-block;width:1px;height:100%;vertical-align:middle;"></span>
       <div class="login">
@@ -34,7 +36,7 @@
           <el-button style="margin-top:10px" class="login_opt_btn" @click="signClick">注册</el-button>
         </div>
       </div>
-    
+    </div>
   </div>
 </template>
 
@@ -42,107 +44,121 @@
 export default {
   name: 'Home',
   components: {
-    
+
   },
-  data(){
-    return{
-      mainForm:{
-        accountNumber:"",
-        password:"",
+  data () {
+    return {
+      mainForm: {
+        accountNumber: '',
+        password: ''
       },
-      sreenHeight:"",
-      homeHeight:"720px",
+      sreenHeight: '',
+      homeHeight: ''
     }
   },
-  created(){
+  created () {
     this.sreenHeight = document.documentElement.clientHeight
   },
-  watch:{
-    'sreenHeight':{
-      immediate:true,
-      handler:function(newVal,oldVal){
-        console.log('s',newVal)
-        if(newVal == '667'){
-          this.homeHeight = '150px'
-        } else {
-          this.homeHeight = '720px'
-        }
+  watch: {
+    sreenHeight: {
+      immediate: true,
+      handler: function (newVal, oldVal) {
+        console.log('s', newVal)
+        // if(newVal == '667'){
+        //   this.homeHeight = '150px'
+        // } else {
+        //   this.homeHeight = '150px'
+        // }
+        this.homeHeight = newVal
       }
     }
   },
-  mounted(){
-    const that = this;
-    window.onresize = () =>{
-      return(()=>{
+  mounted () {
+    const that = this
+    window.onresize = () => {
+      return (() => {
         window.sreenHeight = document.documentElement.clientHeight
         that.sreenHeight = window.sreenHeight
       })()
     }
   },
-  methods:{
-    async loginClick(){
-      //登录
+  methods: {
+    drawBackGround (ctx, x, y, w, h, r, color) {
+      ctx.beginPath()
+      ctx.rect(x, y, w, h)
+      ctx.fillStyle = 'red'
+      ctx.fill()
+      ctx.closePath()
+    },
+    async loginClick () {
+      // 登录
       const response = await this.$http.post('/api/user/login',
         {
-          username:this.mainForm.accountNumber,
-          password:this.mainForm.password
+          username: this.mainForm.accountNumber,
+          password: this.mainForm.password
         }
       )
-      if(response.code == 200 ){
+      if (response.code === 200) {
         this.$message.success('登录成功')
         this.$router.push({
-          path:'/pages/noteManage'
+          path: '/pages/noteManage'
         })
       } else {
         this.$message.error(response.msg)
       }
     },
-    async signClick(){
-      //注册
+    async signClick () {
+      // 注册
       const response = await this.$http.post('/api/user/addUser',
         {
-          username:this.mainForm.accountNumber,
-          password:this.mainForm.password
+          username: this.mainForm.accountNumber,
+          password: this.mainForm.password
         }
       )
-      if(response.code == 200){
+      if (response.code === 200) {
         this.$message.success('注册成功')
       } else {
         this.$message.error(response.msg)
       }
-    },
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.home{
-  display: inline-block;
-  text-align: center;
-    .login{
-      display: inline-block;
-      text-align: center;
-      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-      width: 400px;
-      height: 400px;
-      vertical-align: middle;
-      .login_span{
-        display:inline-block;
-        width:1px;
-        height:30%;
-        vertical-align:middle;
-      }
-      .formData{
+html,body{
+  height: 100%;
+}
+.totalHome{
+  // background-color: lightblue;
+  .home{
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+      .login{
+        display: inline-block;
+        text-align: center;
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+        width: 400px;
+        height: 400px;
         vertical-align: middle;
-      }
-      .login_opt{
-        margin-top:40px;
-        .login_opt_btn{
-          width: 220px;
-          margin-left:-10px
+        .login_span{
+          display:inline-block;
+          width:1px;
+          height:30%;
+          vertical-align:middle;
+        }
+        .formData{
+          vertical-align: middle;
+        }
+        .login_opt{
+          margin-top:40px;
+          .login_opt_btn{
+            width: 220px;
+            margin-left:-10px
+          }
         }
       }
-    }
- 
+  }
 }
 </style>

@@ -3,7 +3,7 @@
     <div class="logo" :style="this.collStatus?'width:64px':'width:160px'">
       <span class="logo_txt">LOGO</span>
     </div>
-    <div class="header_body" v-for="item in $route.meta">{{item}}
+    <div class="header_body" v-for="item in $route.meta" :key="item">{{item}}
       <div class="collapse"><span @click="collapseBtn"><i class="fa fa-bars fa-lg"></i></span></div>
       <div class="header_body_user">
       <el-dropdown @command="handleCommand">
@@ -11,7 +11,7 @@
         <el-dropdown-menu slot="dropdown">
           <!-- <el-dropdown-item command="home">首页</el-dropdown-item> -->
           <el-dropdown-item command="signout">退出</el-dropdown-item>
-			  </el-dropdown-menu>
+        </el-dropdown-menu>
       </el-dropdown>
     </div>
     </div>
@@ -20,33 +20,33 @@
 
 <script>
   export default {
-    name:'Header',
-    props:{
-      status:Boolean, //父组件给子组件传值
+    name: 'Header',
+    props: {
+      status: Boolean // 父组件给子组件传值
     },
-    data(){
-      return{
-        collStatus:this.status
+    data () {
+      return {
+        collStatus: this.status
       }
     },
-    created(){
-     
+    created () {
+
     },
-    methods:{
-      handleCommand(command){
-        //登出
-        this.$router.push('/');
+    methods: {
+      handleCommand (command) {
+        // 登出
+        this.$router.push('/')
       },
-      collapseBtn(){
-        //收缩侧边栏
-        if(this.collStatus){
+      collapseBtn () {
+        // 收缩侧边栏
+        if (this.collStatus) {
           this.collStatus = false
         } else {
           this.collStatus = true
         }
-        this.$emit('collapseClick',this.collStatus) // 子组件给父组件传值
+        this.$emit('collapseClick', this.collStatus) // 子组件给父组件传值
         // console.log('emit',this.$emit('collapseClick',this.collStatus))
-      },
+      }
     }
   }
 </script>
